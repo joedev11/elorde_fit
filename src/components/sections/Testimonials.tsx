@@ -24,7 +24,14 @@ const testimonials = [
     id: 4,
     name: "Hex M.",
     rating: 5,
-    text: "Customer service is top tier and the products arrive fast. I've ordered from Elorde Fit three times now and won't go anywhere else.",
+    text: "Kev pls.",
+    tag: "General",
+  },
+  {
+    id: 5,
+    name: "Luigi P.",
+    rating: 4,
+    text: "Kulang nalang bilyaran para 5 stars.",
     tag: "General",
   },
 ];
