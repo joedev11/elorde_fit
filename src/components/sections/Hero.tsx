@@ -57,7 +57,15 @@ const slides = [
   },
 ];
 
-function CtaButton({ href, className, children }: { href: string; className: string; children: React.ReactNode }) {
+function CtaButton({
+  href,
+  className,
+  children,
+}: {
+  href: string;
+  className: string;
+  children: React.ReactNode;
+}) {
   const isAnchor = href.startsWith("#");
 
   const handleClick = (e: React.MouseEvent) => {
@@ -68,9 +76,17 @@ function CtaButton({ href, className, children }: { href: string; className: str
   };
 
   if (isAnchor) {
-    return <button onClick={handleClick} className={className}>{children}</button>;
+    return (
+      <button onClick={handleClick} className={className}>
+        {children}
+      </button>
+    );
   }
-  return <Link href={href} className={className}>{children}</Link>;
+  return (
+    <Link href={href} className={className}>
+      {children}
+    </Link>
+  );
 }
 
 export default function Hero() {
@@ -143,10 +159,16 @@ export default function Hero() {
           {slide.description}
         </p>
         <div className="mt-10 flex flex-col sm:flex-row gap-4">
-          <CtaButton href={slide.cta.href} className="bg-[#CC0000] text-white font-bold uppercase tracking-widest px-8 py-4 text-sm hover:bg-white hover:text-black transition-colors">
+          <CtaButton
+            href={slide.cta.href}
+            className="bg-[#CC0000] text-white font-bold uppercase tracking-widest px-8 py-4 text-sm hover:bg-white hover:text-black transition-colors"
+          >
             {slide.cta.label}
           </CtaButton>
-          <CtaButton href={slide.ctaSecondary.href} className="border border-white text-white font-bold uppercase tracking-widest px-8 py-4 text-sm hover:bg-white hover:text-black transition-colors">
+          <CtaButton
+            href={slide.ctaSecondary.href}
+            className="border border-white text-white font-bold uppercase tracking-widest px-8 py-4 text-sm hover:bg-white hover:text-black transition-colors"
+          >
             {slide.ctaSecondary.label}
           </CtaButton>
         </div>
