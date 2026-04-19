@@ -206,7 +206,7 @@ export default function GroupRuns() {
           {/* Right — video */}
           <div className="relative aspect-[9/16] sm:aspect-video lg:aspect-[9/16] w-full overflow-hidden bg-black">
             <video
-              src="/group_runs/group_run_video.mp4"
+              src="/group_runs/sama_vid.mp4"
               autoPlay
               muted
               loop
@@ -220,7 +220,7 @@ export default function GroupRuns() {
                   Run with the Community
                 </p>
                 <p className="text-white/50 text-sm mt-2">
-                  No registration needed. Just show up, lace up, and run.
+                  Lets show up, lace up, and run.
                 </p>
               </div>
             </div>
