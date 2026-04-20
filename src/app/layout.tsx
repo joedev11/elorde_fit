@@ -12,8 +12,9 @@ const barlow = Barlow({
 });
 
 export const metadata: Metadata = {
-  title: "Elorde Fit — Training. Apparel. Performance.",
-  description: "Premium fitness programming, apparel, and e-books.",
+  title: "Elorde Fit — Boxing, Bootcamp, Hyrox & More",
+  description:
+    "Elorde Fit offers Boxing & Muay Thai programs, Bootcamp HIIT classes, Hyrox training, and many more.",
 };
 
 export default function RootLayout({
@@ -22,7 +23,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${barlow.variable} h-full antialiased scroll-smooth`}>
+    <html
+      lang="en"
+      className={`${barlow.variable} h-full antialiased scroll-smooth`}
+    >
       <body className="min-h-full flex flex-col bg-[#FAFAFA] text-[#414142] font-[family-name:var(--font-barlow)]">
         <AnnouncementBar />
         <Navbar />
