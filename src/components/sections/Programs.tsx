@@ -1,28 +1,46 @@
-import Image from "next/image";
 import Link from "next/link";
 
-const programs = [
+const boxingRates = [
   {
-    name: "Boxing Fundamentals",
-    level: "Beginner",
-    sessions: "3x / week",
-    image: "https://placehold.co/600x700/1a0000/3a0000?text=Boxing+Fundamentals",
-    href: "/programs/boxing-fundamentals",
+    label: "Walk-in",
+    price: "₱600",
+    note: null,
   },
   {
-    name: "Advanced Muay Thai",
-    level: "Intermediate–Advanced",
-    sessions: "4x / week",
-    image: "https://placehold.co/600x700/0d0d0d/2a2a2a?text=Muay+Thai",
-    href: "/programs/advanced-muay-thai",
+    label: "Member",
+    price: "₱499",
+    note: null,
   },
   {
-    name: "Fight Camp Prep",
-    level: "All Levels",
-    sessions: "5x / week",
-    image: "https://placehold.co/600x700/1a0000/3a0000?text=Fight+Camp",
-    href: "/programs/fight-camp-prep",
+    label: "Gold Package",
+    price: "₱4,000",
+    note: "10 Sessions, Valid for 45 Days",
   },
+  {
+    label: "Champion Package",
+    price: "₱7,900",
+    note: "21 Sessions, Valid for 60 Days",
+  },
+  {
+    label: "Boot Camp",
+    sublabel: "High-Intensity Group Training",
+    price: "₱499",
+    note: null,
+  },
+  {
+    label: "Comprised Cardio",
+    sublabel: "with Coach Karl",
+    price: "₱499",
+    note: null,
+  },
+];
+
+const memberBenefits = [
+  "Monthly Membership Deals",
+  "Priority Access to Promos and Events",
+  "Exclusive Sparring Sessions",
+  "Free Use of Boxing Gloves",
+  "Represent Elorde Fit in the UKC",
 ];
 
 export default function Programs() {
@@ -31,52 +49,82 @@ export default function Programs() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12">
-          <div>
-            <p className="text-[#CC0000] text-xs font-bold uppercase tracking-[0.35em] mb-3">Training</p>
-            <h2 className="text-5xl font-black uppercase leading-none tracking-tight text-black">
-              Boxing &<br />Muay Thai Programs
-            </h2>
-            <p className="mt-3 text-[#414142] max-w-lg">
-              Elite combat sports programming designed for fighters who demand excellence. Master the fundamentals and elevate your game.
-            </p>
-          </div>
-          <Link
-            href="/programs"
-            className="self-start lg:self-end bg-black text-white font-bold uppercase tracking-widest px-8 py-4 text-sm hover:bg-[#CC0000] transition-colors whitespace-nowrap"
-          >
-            View All Programs
-          </Link>
+        <div className="mb-12">
+          <p className="text-[#CC0000] text-xs font-bold uppercase tracking-[0.35em] mb-3">Training</p>
+          <h2 className="text-5xl font-black uppercase leading-none tracking-tight text-black">
+            Boxing &<br />Muay Thai Programs
+          </h2>
+          <p className="mt-3 text-[#414142] max-w-lg">
+            Elite combat sports programming designed for fighters who demand excellence. Master the fundamentals and elevate your game.
+          </p>
         </div>
 
-        {/* Program Cards — horizontal scroll on mobile, grid on sm+ */}
-        <div className="flex sm:grid sm:grid-cols-3 gap-6 overflow-x-auto snap-x snap-mandatory pb-4 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none">
-          {programs.map((program) => (
-            <Link
-              key={program.name}
-              href={program.href}
-              className="group flex flex-col bg-white border border-black/5 overflow-hidden flex-shrink-0 w-[75vw] sm:w-auto snap-start"
-            >
-              <div className="relative aspect-[3/4] overflow-hidden bg-black">
-                <Image
-                  src={program.image}
-                  alt={program.name}
-                  fill
-                  className="object-cover opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-500"
-                />
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 border border-black/10">
+
+          {/* Left — Pricing Table */}
+          <div className="lg:col-span-2">
+            {/* Annual Membership */}
+            <div className="flex items-center justify-between px-6 py-5 bg-black text-white">
+              <span className="text-sm font-black uppercase tracking-widest">Annual Membership</span>
+              <div className="text-right">
+                <span className="text-2xl font-black text-[#CC0000]">₱2,499</span>
+                <span className="ml-2 text-xs text-white/50">Inclusive of Gym Use</span>
               </div>
-              <div className="p-5 flex flex-col gap-2">
-                <h3 className="text-lg font-black uppercase tracking-wide text-black">{program.name}</h3>
-                <div className="flex items-center justify-between text-xs text-[#414142] uppercase tracking-wider">
-                  <span>{program.level}</span>
-                  <span className="text-[#CC0000] font-bold">{program.sessions}</span>
+            </div>
+
+            {/* Boxing / Muay Thai label */}
+            <div className="px-6 py-3 bg-black/5 border-t border-black/10">
+              <span className="text-xs font-black uppercase tracking-widest text-black/50">Boxing / Muay Thai</span>
+            </div>
+
+            {/* Rate rows */}
+            {boxingRates.map((rate, i) => (
+              <div
+                key={i}
+                className="flex items-center justify-between px-6 py-5 border-t border-black/10 hover:bg-black/[0.02] transition-colors"
+              >
+                <div>
+                  <p className="text-sm font-black uppercase tracking-wide text-black">{rate.label}</p>
+                  {rate.sublabel && (
+                    <p className="text-xs text-[#414142] mt-0.5">{rate.sublabel}</p>
+                  )}
                 </div>
-                <span className="mt-2 text-xs font-bold uppercase tracking-widest text-black border-b border-black/20 pb-0.5 self-start group-hover:text-[#CC0000] group-hover:border-[#CC0000] transition-colors">
-                  Learn More →
-                </span>
+                <div className="text-right">
+                  <span className="text-xl font-black text-black">{rate.price}</span>
+                  {rate.note && (
+                    <p className="text-xs text-[#414142] mt-0.5">{rate.note}</p>
+                  )}
+                </div>
               </div>
+            ))}
+          </div>
+
+          {/* Right — Member Benefits */}
+          <div className="bg-[#CC0000] text-white flex flex-col justify-between p-8 lg:border-l border-t lg:border-t-0 border-black/10">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.35em] text-white/60 mb-4">
+                Member Benefits
+              </p>
+              <ul className="flex flex-col gap-4">
+                {memberBenefits.map((benefit, i) => (
+                  <li key={i} className="flex items-start gap-3 text-sm font-medium leading-snug">
+                    <svg className="h-4 w-4 mt-0.5 flex-shrink-0 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z" clipRule="evenodd" />
+                    </svg>
+                    {benefit}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <Link
+              href="/contact"
+              className="mt-10 block text-center bg-white text-black font-black uppercase tracking-widest px-6 py-4 text-sm hover:bg-black hover:text-white transition-colors"
+            >
+              Inquire Now
             </Link>
-          ))}
+          </div>
+
         </div>
       </div>
     </section>

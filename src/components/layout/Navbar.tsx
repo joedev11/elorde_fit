@@ -62,7 +62,7 @@ export default function Navbar() {
               />
             </svg>
           </Link>
-          <Link
+          {/* <Link
             href="/cart"
             className="text-white hover:text-[#CC0000] transition-colors"
             aria-label="Cart"
@@ -101,7 +101,7 @@ export default function Navbar() {
                 d="M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM12 14a7 7 0 0 0-7 7h14a7 7 0 0 0-7-7z"
               />
             </svg>
-          </Link>
+          </Link> */}
         </div>
 
         {/* Mobile Menu Button */}

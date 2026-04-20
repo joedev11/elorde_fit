@@ -15,9 +15,9 @@ const testimonials = [
   },
   {
     id: 3,
-    name: "Kevin R.",
+    name: "John D.",
     rating: 5,
-    text: "Sarap maghubad.",
+    text: "Masarap yung coach.",
     tag: "Hyrox Training",
   },
   {

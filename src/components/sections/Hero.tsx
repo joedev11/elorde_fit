@@ -13,7 +13,7 @@ const slides = [
       "Elite combat sports programming designed for fighters who demand excellence. Master the fundamentals and elevate your game.",
     cta: { label: "View Programs", href: "#programs" },
     // ctaSecondary: { label: "Shop Apparel", href: "/apparel" },
-    image: "https://placehold.co/1600x900/111111/333333?text=Slide+1",
+    image: "/elorde_poster.jpg",
   },
   {
     id: 2,
@@ -57,6 +57,16 @@ const slides = [
     cta: { label: "Stay Tuned", href: "#group-runs", disabled: true },
     ctaSecondary: { label: "Learn More", href: "#group-runs" },
     image: "/group_runs/group_run_poster.jpg",
+  },
+  {
+    id: 6,
+    tag: "Basketball Tournaments",
+    title: "3x3 Basketball",
+    description:
+      "Join our community for open group runs. All paces welcome as we explore scenic routes together and build camaraderie.",
+    cta: { label: "Stay Tuned", href: "#group-runs", disabled: true },
+    ctaSecondary: { label: "Learn More", href: "#group-runs" },
+    image: "/3x3_poster.jpg",
   },
 ];
 
