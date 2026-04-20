@@ -12,7 +12,7 @@ const slides = [
     description:
       "Elite combat sports programming designed for fighters who demand excellence. Master the fundamentals and elevate your game.",
     cta: { label: "View Programs", href: "#programs" },
-    ctaSecondary: { label: "Shop Apparel", href: "/apparel" },
+    // ctaSecondary: { label: "Shop Apparel", href: "/apparel" },
     image: "https://placehold.co/1600x900/111111/333333?text=Slide+1",
   },
   {
@@ -21,7 +21,10 @@ const slides = [
     title: "The Flash Run\nMay 31, 2026",
     description:
       "Central Park, Filinvest City, Alabang. Join the 21K, 16K, 10K, 5K, or 3K.",
-    cta: { label: "Register Now", href: "/events/flash-run" },
+    cta: {
+      label: "Register Now",
+      href: "https://mnlcityrun.myruntime.com/register/elorde-the-flash-run-2026-run-like-a-champ?fbclid=IwY2xjawRS6WZleHRuA2FlbQIxMABicmlkETFibGY5UGZLc2RCSHQ4U3lJc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHuichkPuWZVFGCta0iaaUXkZFyNIX7Ev_q5SoP3W1pGmTUQn_1vYq5rZsYwK_aem_1bAuTASoo-JsLm8rXB7_zw",
+    },
     ctaSecondary: { label: "See Event Details", href: "#flash-run" },
     image: "/flash_run/flash_run_poster.jpg",
   },
@@ -51,8 +54,8 @@ const slides = [
     title: "Open Runs",
     description:
       "Join our community for open group runs. All paces welcome as we explore scenic routes together and build camaraderie.",
-    cta: { label: "Join a Run", href: "#group-runs" },
-    ctaSecondary: { label: "View Schedule", href: "/runs" },
+    cta: { label: "Stay Tuned", href: "#group-runs", disabled: true },
+    ctaSecondary: { label: "Learn More", href: "#group-runs" },
     image: "/group_runs/group_run_poster.jpg",
   },
 ];
@@ -159,18 +162,26 @@ export default function Hero() {
           {slide.description}
         </p>
         <div className="mt-10 flex flex-col sm:flex-row gap-4">
-          <CtaButton
-            href={slide.cta.href}
-            className="bg-[#CC0000] text-white font-bold uppercase tracking-widest px-8 py-4 text-sm hover:bg-white hover:text-black transition-colors"
-          >
-            {slide.cta.label}
-          </CtaButton>
-          <CtaButton
-            href={slide.ctaSecondary.href}
-            className="border border-white text-white font-bold uppercase tracking-widest px-8 py-4 text-sm hover:bg-white hover:text-black transition-colors"
-          >
-            {slide.ctaSecondary.label}
-          </CtaButton>
+          {slide.cta.disabled ? (
+            <span className="bg-white/20 text-white/50 font-bold uppercase tracking-widest px-8 py-4 text-sm cursor-not-allowed select-none">
+              {slide.cta.label}
+            </span>
+          ) : (
+            <CtaButton
+              href={slide.cta.href}
+              className="bg-[#CC0000] text-white font-bold uppercase tracking-widest px-8 py-4 text-sm hover:bg-white hover:text-black transition-colors"
+            >
+              {slide.cta.label}
+            </CtaButton>
+          )}
+          {slide.ctaSecondary && (
+            <CtaButton
+              href={slide.ctaSecondary.href}
+              className="border border-white text-white font-bold uppercase tracking-widest px-8 py-4 text-sm hover:bg-white hover:text-black transition-colors"
+            >
+              {slide.ctaSecondary.label}
+            </CtaButton>
+          )}
         </div>
       </div>
 

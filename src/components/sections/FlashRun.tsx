@@ -36,7 +36,9 @@ export default function FlashRun() {
   const close = () => setLightbox(null);
 
   const prev = useCallback(() => {
-    setLightbox((i) => (i === null ? null : (i - 1 + gallery.length) % gallery.length));
+    setLightbox((i) =>
+      i === null ? null : (i - 1 + gallery.length) % gallery.length,
+    );
   }, []);
 
   const next = useCallback(() => {
@@ -58,13 +60,17 @@ export default function FlashRun() {
   // Lock scroll when open
   useEffect(() => {
     document.body.style.overflow = lightbox !== null ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [lightbox]);
 
   return (
-    <section id="flash-run" className="bg-black text-white py-20 overflow-hidden">
+    <section
+      id="flash-run"
+      className="bg-black text-white py-20 overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12">
           <div>
@@ -80,7 +86,7 @@ export default function FlashRun() {
           </div>
           <div className="flex flex-col sm:flex-row gap-3">
             <Link
-              href="/events/flash-run"
+              href="https://mnlcityrun.myruntime.com/register/elorde-the-flash-run-2026-run-like-a-champ?fbclid=IwY2xjawRS6WZleHRuA2FlbQIxMABicmlkETFibGY5UGZLc2RCSHQ4U3lJc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHuichkPuWZVFGCta0iaaUXkZFyNIX7Ev_q5SoP3W1pGmTUQn_1vYq5rZsYwK_aem_1bAuTASoo-JsLm8rXB7_zw"
               className="bg-[#CC0000] text-white font-bold uppercase tracking-widest px-8 py-4 text-sm hover:bg-white hover:text-black transition-colors text-center"
             >
               Register Now
@@ -97,20 +103,33 @@ export default function FlashRun() {
         {/* Event Details Bar */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-white/10 mb-12">
           <div className="bg-black px-6 py-5">
-            <p className="text-[#CC0000] text-xs font-bold uppercase tracking-widest mb-1">Date</p>
-            <p className="text-white font-black text-lg uppercase">May 31, 2026</p>
+            <p className="text-[#CC0000] text-xs font-bold uppercase tracking-widest mb-1">
+              Date
+            </p>
+            <p className="text-white font-black text-lg uppercase">
+              May 31, 2026
+            </p>
             <p className="text-white/50 text-sm">Sunday</p>
           </div>
           <div className="bg-black px-6 py-5">
-            <p className="text-[#CC0000] text-xs font-bold uppercase tracking-widest mb-1">Location</p>
-            <p className="text-white font-black text-lg uppercase">Central Park</p>
+            <p className="text-[#CC0000] text-xs font-bold uppercase tracking-widest mb-1">
+              Location
+            </p>
+            <p className="text-white font-black text-lg uppercase">
+              Central Park
+            </p>
             <p className="text-white/50 text-sm">Filinvest City, Alabang</p>
           </div>
           <div className="bg-black px-6 py-5">
-            <p className="text-[#CC0000] text-xs font-bold uppercase tracking-widest mb-1">Categories</p>
+            <p className="text-[#CC0000] text-xs font-bold uppercase tracking-widest mb-1">
+              Categories
+            </p>
             <div className="flex gap-2 flex-wrap mt-1">
               {categories.map((cat) => (
-                <span key={cat} className="bg-[#CC0000] text-white text-xs font-black px-3 py-1 uppercase tracking-wide">
+                <span
+                  key={cat}
+                  className="bg-[#CC0000] text-white text-xs font-black px-3 py-1 uppercase tracking-wide"
+                >
                   {cat}
                 </span>
               ))}
@@ -133,11 +152,24 @@ export default function FlashRun() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
             <div className="absolute bottom-4 left-4">
-              <span className="text-white/50 text-xs uppercase tracking-widest">Elorde × MNL City Run</span>
+              <span className="text-white/50 text-xs uppercase tracking-widest">
+                Elorde × MNL City Run
+              </span>
             </div>
             <div className="absolute top-3 right-3 bg-black/50 rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5"
+                />
               </svg>
             </div>
           </button>
@@ -156,8 +188,19 @@ export default function FlashRun() {
                 className="object-cover opacity-70 group-hover:scale-105 group-hover:opacity-100 transition-all duration-500"
               />
               <div className="absolute top-2 right-2 bg-black/50 rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-3.5 w-3.5 text-white"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5"
+                  />
                 </svg>
               </div>
             </button>
@@ -167,8 +210,10 @@ export default function FlashRun() {
         {/* Bottom tagline */}
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pt-8">
           <p className="text-white/40 text-sm max-w-md text-center sm:text-left">
-            Presented by <span className="text-white font-semibold">Elorde</span> ×{" "}
-            <span className="text-white font-semibold">MNL City Run</span>. All fitness levels welcome.
+            Presented by{" "}
+            <span className="text-white font-semibold">Elorde</span> ×{" "}
+            <span className="text-white font-semibold">MNL City Run</span>. All
+            fitness levels welcome.
           </p>
           <Link
             href="/events/flash-run"
@@ -204,36 +249,76 @@ export default function FlashRun() {
             className="absolute top-4 right-4 bg-white/10 hover:bg-[#CC0000] text-white w-10 h-10 flex items-center justify-center transition-colors"
             aria-label="Close"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
 
           {/* Prev */}
           <button
-            onClick={(e) => { e.stopPropagation(); prev(); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              prev();
+            }}
             className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-[#CC0000] text-white w-11 h-11 flex items-center justify-center transition-colors"
             aria-label="Previous"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
             </svg>
           </button>
 
           {/* Next */}
           <button
-            onClick={(e) => { e.stopPropagation(); next(); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              next();
+            }}
             className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-[#CC0000] text-white w-11 h-11 flex items-center justify-center transition-colors"
             aria-label="Next"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
             </svg>
           </button>
 
           {/* Counter */}
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/40 text-xs font-bold tracking-widest">
-            {String(lightbox + 1).padStart(2, "0")} / {String(gallery.length).padStart(2, "0")}
+            {String(lightbox + 1).padStart(2, "0")} /{" "}
+            {String(gallery.length).padStart(2, "0")}
           </div>
 
           {/* Dot strip */}
@@ -241,9 +326,14 @@ export default function FlashRun() {
             {gallery.map((_, i) => (
               <button
                 key={i}
-                onClick={(e) => { e.stopPropagation(); setLightbox(i); }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setLightbox(i);
+                }}
                 className={`h-1.5 transition-all duration-300 ${
-                  i === lightbox ? "w-8 bg-[#CC0000]" : "w-4 bg-white/30 hover:bg-white/60"
+                  i === lightbox
+                    ? "w-8 bg-[#CC0000]"
+                    : "w-4 bg-white/30 hover:bg-white/60"
                 }`}
               />
             ))}

@@ -2,29 +2,14 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import Link from "next/link";
 
 const runs = [
   {
     name: "Sunday Easy Run",
-    distance: "5–10 km",
-    pace: "Easy / Conversational",
-    meetup: "BGC, Taguig",
-    date: "Every Sunday, 5:30 AM",
-  },
-  {
-    name: "Track Night",
-    distance: "6 × 800m",
-    pace: "Speed Work",
-    meetup: "Rizal Memorial Track",
-    date: "Every Tuesday, 6:00 PM",
-  },
-  {
-    name: "Long Run Saturday",
-    distance: "15–21 km",
-    pace: "Marathon Pace",
-    meetup: "Filinvest, Alabang",
-    date: "Every Saturday, 5:00 AM",
+    distance: "3–5 km",
+    pace: "Your choice",
+    meetup: "Sama Cafe, BF Homes, Aguirre",
+    date: "Sunday, 5:30 AM",
   },
 ];
 
@@ -63,11 +48,11 @@ export default function GroupRuns() {
   return (
     <section id="group-runs" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
           {/* Left — content + carousel */}
           <div className="flex flex-col gap-8">
             {/* Poster image */}
-            <div className="relative w-full h-124 overflow-hidden bg-black">
+            <div className="relative w-full h-141 overflow-hidden bg-black">
               <Image
                 src="/group_runs/group_run_poster.jpg"
                 alt="Elorde Open Runs"
@@ -91,12 +76,15 @@ export default function GroupRuns() {
                   we explore scenic routes together.
                 </p>
               </div>
-              <Link
+              {/* <Link
                 href="/runs"
                 className="hidden sm:block flex-shrink-0 border-2 border-black text-black font-bold uppercase tracking-widest px-6 py-3 text-sm hover:bg-black hover:text-white transition-colors"
               >
                 Join a Run
-              </Link>
+              </Link> */}
+              <span className="hidden sm:block flex-shrink-0 border-2 border-black/20 text-black/30 font-bold uppercase tracking-widest px-6 py-3 text-sm cursor-not-allowed select-none">
+                Stay Tuned
+              </span>
             </div>
 
             {/* Carousel card */}
@@ -127,84 +115,80 @@ export default function GroupRuns() {
                     <span className="text-sm text-[#414142]">{run.date}</span>
                   </div>
                 </div>
-                <Link
-                  href="/runs"
-                  className="inline-block mt-6 text-xs font-bold uppercase tracking-widest text-[#CC0000] border-b border-[#CC0000] pb-0.5 hover:text-black hover:border-black transition-colors"
-                >
-                  Join this Run →
-                </Link>
+                <span className="inline-block mt-6 text-xs font-bold uppercase tracking-widest text-black/30 border-b border-black/20 pb-0.5 cursor-not-allowed select-none">
+                  Stay Tuned →
+                </span>
               </div>
 
               {/* Carousel controls */}
-              <div className="flex items-center justify-between border-t border-black/10 px-8 py-4">
-                <div className="flex gap-2">
-                  {runs.map((_, i) => (
+              {runs.length > 1 && (
+                <div className="flex items-center justify-between border-t border-black/10 px-8 py-4">
+                  <div className="flex gap-2">
+                    {runs.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => goTo(i)}
+                        className={`h-1.5 transition-all duration-300 ${
+                          i === current
+                            ? "w-8 bg-[#CC0000]"
+                            : "w-4 bg-black/20 hover:bg-black/40"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <div className="flex gap-2">
                     <button
-                      key={i}
-                      onClick={() => goTo(i)}
-                      className={`h-1.5 transition-all duration-300 ${
-                        i === current
-                          ? "w-8 bg-[#CC0000]"
-                          : "w-4 bg-black/20 hover:bg-black/40"
-                      }`}
-                    />
-                  ))}
-                </div>
-                <div className="flex gap-2">
-                  <button
-                    onClick={prev}
-                    className="w-9 h-9 flex items-center justify-center border border-black/10 hover:bg-black hover:text-white hover:border-black transition-colors text-black"
-                    aria-label="Previous"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-4 w-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
+                      onClick={prev}
+                      className="w-9 h-9 flex items-center justify-center border border-black/10 hover:bg-black hover:text-white hover:border-black transition-colors text-black"
+                      aria-label="Previous"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M15 19l-7-7 7-7"
-                      />
-                    </svg>
-                  </button>
-                  <button
-                    onClick={next}
-                    className="w-9 h-9 flex items-center justify-center border border-black/10 hover:bg-black hover:text-white hover:border-black transition-colors text-black"
-                    aria-label="Next"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-4 w-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M15 19l-7-7 7-7"
+                        />
+                      </svg>
+                    </button>
+                    <button
+                      onClick={next}
+                      className="w-9 h-9 flex items-center justify-center border border-black/10 hover:bg-black hover:text-white hover:border-black transition-colors text-black"
+                      aria-label="Next"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </button>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
 
-            <Link
-              href="/runs"
-              className="sm:hidden text-center border-2 border-black text-black font-bold uppercase tracking-widest px-6 py-3 text-sm hover:bg-black hover:text-white transition-colors"
-            >
-              Join a Run
-            </Link>
+            <span className="sm:hidden text-center border-2 border-black/20 text-black/30 font-bold uppercase tracking-widest px-6 py-3 text-sm cursor-not-allowed select-none">
+              Stay Tuned
+            </span>
           </div>
 
           {/* Right — video */}
-          <div className="relative aspect-[9/16] sm:aspect-video lg:aspect-[9/16] w-full overflow-hidden bg-black">
+          <div className="relative w-full min-h-[400px] overflow-hidden bg-black">
             <video
               src="/group_runs/sama_vid.mp4"
               autoPlay
