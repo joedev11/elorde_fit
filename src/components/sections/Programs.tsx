@@ -1,38 +1,15 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 
 const boxingRates = [
-  {
-    label: "Walk-in",
-    price: "₱600",
-    note: null,
-  },
-  {
-    label: "Member",
-    price: "₱499",
-    note: null,
-  },
-  {
-    label: "Gold Package",
-    price: "₱4,000",
-    note: "10 Sessions, Valid for 45 Days",
-  },
-  {
-    label: "Champion Package",
-    price: "₱7,900",
-    note: "21 Sessions, Valid for 60 Days",
-  },
-  {
-    label: "Boot Camp",
-    sublabel: "High-Intensity Group Training",
-    price: "₱499",
-    note: null,
-  },
-  {
-    label: "Comprised Cardio",
-    sublabel: "with Coach Karl",
-    price: "₱499",
-    note: null,
-  },
+  { label: "Walk-in", price: "₱600", note: null },
+  { label: "Member", price: "₱499", note: null },
+  { label: "Gold Package", price: "₱4,000", note: "10 Sessions, Valid for 45 Days" },
+  { label: "Champion Package", price: "₱7,900", note: "21 Sessions, Valid for 60 Days" },
+  { label: "Boot Camp", sublabel: "High-Intensity Group Training", price: "₱499", note: null },
+  { label: "Comprised Cardio", sublabel: "with Coach Karl", price: "₱499", note: null },
 ];
 
 const memberBenefits = [
@@ -44,6 +21,8 @@ const memberBenefits = [
 ];
 
 export default function Programs() {
+  const [ratesOpen, setRatesOpen] = useState(false);
+
   return (
     <section id="programs" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -72,31 +51,51 @@ export default function Programs() {
               </div>
             </div>
 
-            {/* Boxing / Muay Thai label */}
-            <div className="px-6 py-3 bg-black/5 border-t border-black/10">
+            {/* Boxing / Muay Thai label — toggle on mobile */}
+            <button
+              className="lg:hidden w-full flex items-center justify-between px-6 py-3 bg-black/5 border-t border-black/10"
+              onClick={() => setRatesOpen(!ratesOpen)}
+            >
+              <span className="text-xs font-black uppercase tracking-widest text-black/50">Boxing / Muay Thai</span>
+              <div className="flex items-center gap-1.5 text-black/40">
+                <span className="text-xs font-bold uppercase tracking-widest">View Rates</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={`h-4 w-4 transition-transform duration-300 ${ratesOpen ? "rotate-180" : ""}`}
+                  fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </button>
+
+            {/* Static label — desktop only */}
+            <div className="hidden lg:flex items-center justify-between px-6 py-3 bg-black/5 border-t border-black/10">
               <span className="text-xs font-black uppercase tracking-widest text-black/50">Boxing / Muay Thai</span>
             </div>
 
-            {/* Rate rows */}
-            {boxingRates.map((rate, i) => (
-              <div
-                key={i}
-                className="flex items-center justify-between px-6 py-5 border-t border-black/10 hover:bg-black/[0.02] transition-colors"
-              >
-                <div>
-                  <p className="text-sm font-black uppercase tracking-wide text-black">{rate.label}</p>
-                  {rate.sublabel && (
-                    <p className="text-xs text-[#414142] mt-0.5">{rate.sublabel}</p>
-                  )}
+            {/* Rate rows — collapsible on mobile, always visible on desktop */}
+            <div className={`lg:max-h-none lg:opacity-100 overflow-hidden transition-all duration-500 ease-in-out ${ratesOpen ? "max-h-[800px] opacity-100" : "max-h-0 opacity-0 lg:max-h-none lg:opacity-100"}`}>
+              {boxingRates.map((rate, i) => (
+                <div
+                  key={i}
+                  className="flex items-center justify-between px-6 py-5 border-t border-black/10 hover:bg-black/[0.02] transition-colors"
+                >
+                  <div>
+                    <p className="text-sm font-black uppercase tracking-wide text-black">{rate.label}</p>
+                    {"sublabel" in rate && rate.sublabel && (
+                      <p className="text-xs text-[#414142] mt-0.5">{rate.sublabel}</p>
+                    )}
+                  </div>
+                  <div className="text-right">
+                    <span className="text-xl font-black text-black">{rate.price}</span>
+                    {rate.note && (
+                      <p className="text-xs text-[#414142] mt-0.5">{rate.note}</p>
+                    )}
+                  </div>
                 </div>
-                <div className="text-right">
-                  <span className="text-xl font-black text-black">{rate.price}</span>
-                  {rate.note && (
-                    <p className="text-xs text-[#414142] mt-0.5">{rate.note}</p>
-                  )}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
           {/* Right — Member Benefits */}

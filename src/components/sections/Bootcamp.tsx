@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -26,6 +29,8 @@ const schedule = [
 ];
 
 export default function Bootcamp() {
+  const [open, setOpen] = useState(false);
+
   return (
     <section id="bootcamp" className="py-20 bg-white text-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -87,6 +92,27 @@ export default function Bootcamp() {
 
             {/* Schedule */}
             <div>
+              {/* Toggle button — mobile only */}
+              <button
+                onClick={() => setOpen(!open)}
+                className="lg:hidden w-full flex items-center justify-between py-3 border-b border-black/20 mb-1 group"
+              >
+                <p className="text-xs font-bold uppercase tracking-widest text-black/40 group-hover:text-black/70 transition-colors">
+                  View Schedules
+                </p>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={`h-4 w-4 text-black/40 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              {/* Collapsible on mobile, always visible on desktop */}
+              <div className={`lg:max-h-none lg:opacity-100 overflow-hidden transition-all duration-500 ease-in-out ${open ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0 lg:max-h-none lg:opacity-100"}`}>
               {/* Header row */}
               <div className="flex items-center pb-2 border-b border-black/10 mb-1 text-black/30 text-xs font-bold uppercase tracking-widest">
                 <span className="w-32 flex-shrink-0">Day</span>
@@ -114,6 +140,7 @@ export default function Bootcamp() {
                   </div>
                 ))}
               </div>
+              </div> {/* end collapsible */}
             </div>
 
             <Link

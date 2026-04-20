@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -13,6 +16,8 @@ const workStations = [
 ];
 
 export default function Hyrox() {
+  const [open, setOpen] = useState(false);
+
   return (
     <section id="hyrox" className="py-20 bg-black text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -30,24 +35,54 @@ export default function Hyrox() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
 
-          {/* Workstation List */}
+          {/* Workstation Dropdown */}
           <div>
-            <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-4">The 8 Workout Stations</p>
-            <div className="flex flex-col gap-0">
-              {workStations.map((ws) => (
-                <div
-                  key={ws.number}
-                  className="flex items-center gap-4 py-4 border-b border-white/10 group"
-                >
-                  <span className="text-[#CC0000] font-black text-sm w-6 flex-shrink-0">{ws.number}</span>
-                  <span className="font-black uppercase tracking-wide text-white flex-1">{ws.name}</span>
-                  <span className="text-sm text-white/50 font-semibold">{ws.reps}</span>
-                </div>
-              ))}
-            </div>
-            <p className="mt-4 text-xs text-white/30 uppercase tracking-wider">
-              Each station is preceded by a 1km run.
+            {/* Toggle button — mobile only */}
+            <button
+              onClick={() => setOpen(!open)}
+              className="lg:hidden w-full flex items-center justify-between py-4 border-b border-white/20 group"
+            >
+              <p className="text-xs font-bold uppercase tracking-widest text-white/40 group-hover:text-white/70 transition-colors">
+                The 8 Workout Stations
+              </p>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className={`h-4 w-4 text-white/40 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            {/* Static header — desktop only */}
+            <p className="hidden lg:block text-xs font-bold uppercase tracking-widest text-white/40 mb-4">
+              The 8 Workout Stations
             </p>
+
+            {/* Collapsible on mobile, always visible on desktop */}
+            <div
+              className={`lg:max-h-none lg:opacity-100 overflow-hidden transition-all duration-500 ease-in-out ${
+                open ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0 lg:max-h-none lg:opacity-100"
+              }`}
+            >
+              <div className="flex flex-col">
+                {workStations.map((ws) => (
+                  <div
+                    key={ws.number}
+                    className="flex items-center gap-4 py-4 border-b border-white/10"
+                  >
+                    <span className="text-[#CC0000] font-black text-sm w-6 flex-shrink-0">{ws.number}</span>
+                    <span className="font-black uppercase tracking-wide text-white flex-1">{ws.name}</span>
+                    <span className="text-sm text-white/50 font-semibold">{ws.reps}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-4 text-xs text-white/30 uppercase tracking-wider">
+                Each station is preceded by a 1km run.
+              </p>
+            </div>
           </div>
 
           {/* Image + CTA */}
