@@ -24,7 +24,7 @@ const testimonials = [
     id: 4,
     name: "Hex M.",
     rating: 5,
-    text: "Kev pls.",
+    text: "Garren pls.",
     tag: "General",
   },
   {
@@ -32,6 +32,13 @@ const testimonials = [
     name: "Luigi P.",
     rating: 4,
     text: "Kulang nalang bilyaran para 5 stars.",
+    tag: "General",
+  },
+  {
+    id: 6,
+    name: "Aaron M.",
+    rating: 4,
+    text: "I like the group runs but can we have more routes? I know you want to keep it a secret but I wanna know where we're running!",
     tag: "General",
   },
 ];
